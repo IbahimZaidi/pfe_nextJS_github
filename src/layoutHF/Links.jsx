@@ -14,9 +14,9 @@ export const formationAxeRecherche = async () => {
 };
 
 // links :
-const arrayLinks = async () => {
+export const arrayLinks = async () => {
   const formationAxeRechercheArray = await formationAxeRecherche();
-  console.log(formationAxeRechercheArray);
+  // console.log(formationAxeRechercheArray);
   const arrayLink = [
     { title: "Accueil", link: "/", childes: [] },
     {
@@ -84,7 +84,7 @@ const Links = () => {
 
   // arrayLinks().then((resolve) => console.log(resolve));
   return (
-    <nav className=" border-2 border-red-950 w-80vw hidden lg:flex h-100%  justify-between ">
+    <nav className=" border-2 border-red-950 w-80vw  hidden lg:flex h-100%  justify-between ">
       {arrayLi.length > 0 ? (
         arrayLi.map((obj, index) => {
           return obj.childes.length < 1 ? (
@@ -125,11 +125,11 @@ const Links = () => {
               }}
               key={index}
               onMouseEnter={(e) => {
-                console.log("hello");
+                // console.log("hello");
                 onEnterMouseLi(e);
               }}
               onMouseLeave={(e) => {
-                console.log("hello");
+                // console.log("hello");
                 onLeaveMouseLi(e);
               }}
             >
@@ -151,12 +151,12 @@ const Links = () => {
                 }}
                 key={index}
               >
-                {console.log("________________")}
+                {/* {console.log("________________")}
                 {console.log(obj.childes)}
-                {console.log("*****************")}
+                {console.log("*****************")} */}
 
                 {obj.childes.map((chil, ind) => {
-                  console.log(chil.link);
+                  // console.log(chil.link);
                   return (
                     <Link href={`${chil.link}`} key={ind}>
                       <div

@@ -1,8 +1,13 @@
+"use client";
 import React from "react";
 import Links from "./Links";
 import { IoMailOpenOutline } from "react-icons/io5";
+import SideMenu from "./SideMenu";
+import { useState } from "react";
 
 const Header = () => {
+  const [toggleVal, setToggle] = useState(true);
+
   return (
     <header className="bg-green-500 flex justify-between items-center h-24  px-1 md:px-3 lg:px-6 xl:px-8 2xl:px-12  m-auto ">
       <img
@@ -17,9 +22,18 @@ const Header = () => {
         src="/images&figures/fplogo_2.png"
         alt="Error image"
       />
-      <span>
+      <span
+        onClick={() => {
+          setToggle(!toggleVal);
+          console.log("hello", toggleVal);
+        }}
+        className=" cursor-pointer"
+      >
         <IoMailOpenOutline className="w-8 h-8 lg:hidden" />
       </span>
+      {/* this is the menu sid_bare component */}
+
+      <SideMenu toggleVal={toggleVal} setToggle={setToggle} />
     </header>
   );
 };
