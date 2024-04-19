@@ -4,6 +4,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -17,6 +18,7 @@ module.exports = {
         "35%": "35%",
         "10%": "10%",
         "90%": "90%",
+        "150%": "150%",
         "70%": "70%",
         "90vh": "90vh",
         "90vw": "90vw",

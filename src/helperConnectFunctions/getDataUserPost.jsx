@@ -3,5 +3,5 @@ export const getDataApiRoute = async () => {
 
   const result = await response.json();
 
-  return result.posts;
+  return result;
 };

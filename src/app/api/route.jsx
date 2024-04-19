@@ -1,4 +1,4 @@
-import { query } from "@/connectDB/query";
+import { query } from "@/src/connectDB/query";
 import { NextResponse } from "next/server";
 
 export const GET = async (req) => {
