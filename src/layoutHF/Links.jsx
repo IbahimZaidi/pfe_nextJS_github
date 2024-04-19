@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
+import Styles from "./links.module.css";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 // get the array of childes of formation doctorales from db :
 
 export const formationAxeRecherche = async () => {
@@ -53,8 +54,6 @@ const arrayLinks = async () => {
 };
 
 const Links = () => {
-  console.log("Hello from the Links");
-
   // declaret and insert the array Links :
   const [arrayLi, setArrayLi] = useState([]);
 
@@ -62,14 +61,6 @@ const Links = () => {
     const arrayL = await arrayLinks().then((resolve) => resolve);
     setArrayLi(arrayL);
   }, []);
-
-  console.log("#################");
-  console.log(arrayLi);
-  console.log("#################");
-
-  // declare the toggle value :
-
-  const [toggleVal, setToggleVal] = useState(false);
 
   // function handle the hover :
 
@@ -85,6 +76,12 @@ const Links = () => {
     e.currentTarget.classList.add("onHovLink");
   };
 
+  // the path variable for active purpus :
+
+  const path = usePathname();
+
+  // console.log(path);
+
   // arrayLinks().then((resolve) => console.log(resolve));
   return (
     <nav className=" border-2 border-red-950 w-80vw flex  justify-around">
@@ -93,7 +90,9 @@ const Links = () => {
           return obj.childes.length < 1 ? (
             <Link href={obj.link} key={index}>
               <div
-                className={`singleLi bg-yellow-300 flex justify-center items-center px-4 h-100%`}
+                className={`singleLi bg-yellow-300 flex justify-center items-center px-4 h-100% ${
+                  obj.link == path ? Styles.active : ""
+                }`}
                 style={{
                   width: `${
                     obj.title.length < 12
@@ -109,7 +108,11 @@ const Links = () => {
             </Link>
           ) : (
             <div
-              className="singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative h-100%"
+              className={`singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative h-100% ${
+                obj.childes.find((elem) => elem.link == path)
+                  ? Styles.active
+                  : ""
+              }`}
               style={{
                 width: `${
                   obj.title.length < 12
