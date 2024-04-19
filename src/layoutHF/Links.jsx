@@ -84,22 +84,22 @@ const Links = () => {
 
   // arrayLinks().then((resolve) => console.log(resolve));
   return (
-    <nav className=" border-2 border-red-950 w-80vw flex  justify-around">
+    <nav className=" border-2 border-red-950 w-80vw hidden lg:flex h-100%  justify-between ">
       {arrayLi.length > 0 ? (
         arrayLi.map((obj, index) => {
           return obj.childes.length < 1 ? (
             <Link href={obj.link} key={index}>
               <div
-                className={`singleLi bg-yellow-300 flex justify-center items-center px-4 h-100% ${
+                className={`singleLi bg-yellow-300 flex justify-center items-center px-1 lg:px-2 xl:px-3 2xl:px-4 h-100% ${
                   obj.link == path ? Styles.active : ""
                 }`}
                 style={{
                   width: `${
                     obj.title.length < 12
-                      ? 6
+                      ? 10
                       : obj.title.length >= 12 && obj.title.length < 16
-                      ? 8
-                      : obj.title.length - 8
+                      ? 10
+                      : obj.title.length - 15
                   }vw`,
                 }}
               >
@@ -108,7 +108,7 @@ const Links = () => {
             </Link>
           ) : (
             <div
-              className={`singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative h-100% ${
+              className={`singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative h-100%   ${
                 obj.childes.find((elem) => elem.link == path)
                   ? Styles.active
                   : ""
@@ -116,11 +116,12 @@ const Links = () => {
               style={{
                 width: `${
                   obj.title.length < 12
-                    ? 6
+                    ? 10
                     : obj.title.length >= 12 && obj.title.length < 16
-                    ? 8
+                    ? 10
                     : obj.title.length - 8
                 }vw`,
+                position: "relative", // Ensure the parent div has relative positioning
               }}
               key={index}
               onMouseEnter={(e) => {
@@ -132,7 +133,7 @@ const Links = () => {
                 onLeaveMouseLi(e);
               }}
             >
-              <span className="flex justify-center items-center  m-auto bg-red-300">
+              <span className="flex justify-center items-center  m-auto bg-red-300 h-100% w-100%">
                 {obj.title}{" "}
               </span>
 
@@ -140,6 +141,15 @@ const Links = () => {
 
               <ul
                 className={`ul_child_linksNav absolute z-10 bg-yellow-900 text-white  top-100% left-0 hidden `}
+                // style={{ left: "-0.10rem" }}
+                style={{
+                  left: `${
+                    obj.childes.find((elem) => elem.link == path)
+                      ? "-0.0625rem"
+                      : ""
+                  }`,
+                }}
+                key={index}
               >
                 {console.log("________________")}
                 {console.log(obj.childes)}
@@ -148,24 +158,23 @@ const Links = () => {
                 {obj.childes.map((chil, ind) => {
                   console.log(chil.link);
                   return (
-                    <Link href={`${chil.link}`}>
+                    <Link href={`${chil.link}`} key={ind}>
                       <div
-                        className={`singleLi  text-white text-nowrap `}
+                        className={`  text-white text-nowrap`}
                         style={{
                           width: `${
                             obj.childes[0].title.length <= obj.title.length
                               ? `${
                                   obj.title.length < 12
-                                    ? 6
+                                    ? 10
                                     : obj.title.length >= 12 &&
                                       obj.title.length < 16
-                                    ? 8
+                                    ? 10
                                     : obj.title.length - 8
                                 }vw`
                               : "fit-content"
                           }`,
                         }}
-                        key={ind}
                       >
                         {chil.title}
                       </div>
