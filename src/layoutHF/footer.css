@@ -118,3 +118,9 @@ footer p {
 /* footer {
   @apply fixed bottom-0;
 } */
+
+/* this is for hover on the links footer  */
+
+.onHovLink ul {
+  @apply flex flex-col space-y-2;
+}

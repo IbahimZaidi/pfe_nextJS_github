@@ -66,42 +66,97 @@ const Links = () => {
   console.log(arrayLi);
   console.log("#################");
 
+  // declare the toggle value :
+
+  const [toggleVal, setToggleVal] = useState(false);
+
+  // function handle the hover :
+
+  const onLeaveMouseLi = (e) => {
+    e.currentTarget.classList.contains("onHovLink")
+      ? e.currentTarget.classList.remove("onHovLink")
+      : "";
+  };
+  const onEnterMouseLi = (e) => {
+    e.currentTarget.classList.contains("onHovLink")
+      ? e.currentTarget.classList.remove("onHovLink")
+      : "";
+    e.currentTarget.classList.add("onHovLink");
+  };
+
   // arrayLinks().then((resolve) => console.log(resolve));
   return (
-    <nav className=" border-2 border-red-950 w-80% flex  justify-around">
+    <nav className=" border-2 border-red-950 w-80vw flex  justify-around">
       {arrayLi.length > 0 ? (
         arrayLi.map((obj, index) => {
           return obj.childes.length == 0 ? (
             <div
-              className={`singleLi bg-yellow-300 flex justify-center items-center w-fit px-4 `}
+              className={`singleLi bg-yellow-300 flex justify-center items-center px-4 `}
               key={index}
+              style={{
+                width: `${
+                  obj.title.length < 12
+                    ? 6
+                    : obj.title.length >= 12 && obj.title.length < 16
+                    ? 8
+                    : obj.title.length - 8
+                }vw`,
+              }}
             >
               {obj.title}
             </div>
           ) : (
-            <div className="singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative">
+            <div
+              className="singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative"
+              style={{
+                width: `${
+                  obj.title.length < 12
+                    ? 6
+                    : obj.title.length >= 12 && obj.title.length < 16
+                    ? 8
+                    : obj.title.length - 8
+                }vw`,
+              }}
+              key={index}
+              onMouseEnter={(e) => {
+                console.log("hello");
+                onEnterMouseLi(e);
+              }}
+              onMouseLeave={(e) => {
+                console.log("hello");
+                onLeaveMouseLi(e);
+              }}
+            >
               <span className="flex justify-center items-center  m-auto bg-red-300">
                 {obj.title}{" "}
               </span>
 
               {/* get the width of the parent :  */}
 
-              <ul className="ul_child_linksNav absolute z-10 bg-yellow-900 text-white  top-100% left-0 flex flex-col  space-y-2 ">
+              <ul
+                className={`ul_child_linksNav absolute z-10 bg-yellow-900 text-white  top-100% left-0 hidden `}
+              >
+                {console.log("________________")}
+                {console.log(obj.childes[0].title.length)}
+                {console.log("*****************")}
+
                 {obj.childes.map((chil, ind) => {
-                  console.log(
-                    `${
-                      chil.title.length > 13
-                        ? `${chil.title.length * 10}px`
-                        : "100%"
-                    } !important`
-                  );
                   return (
                     <div
                       className={`singleLi  text-white text-nowrap `}
                       style={{
                         width: `${
-                          chil.title.length > 13 ? "fit-conetent" : "100%"
-                        } `,
+                          obj.childes[0].title.length <= obj.title.length
+                            ? `${
+                                obj.title.length < 12
+                                  ? 6
+                                  : obj.title.length >= 12 &&
+                                    obj.title.length < 16
+                                  ? 8
+                                  : obj.title.length - 8
+                              }vw`
+                            : "fit-content"
+                        }`,
                       }}
                       key={ind}
                     >
