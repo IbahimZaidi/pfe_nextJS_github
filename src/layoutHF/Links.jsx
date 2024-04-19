@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+import Link from "next/link";
 // get the array of childes of formation doctorales from db :
 
 export const formationAxeRecherche = async () => {
@@ -89,25 +90,26 @@ const Links = () => {
     <nav className=" border-2 border-red-950 w-80vw flex  justify-around">
       {arrayLi.length > 0 ? (
         arrayLi.map((obj, index) => {
-          return obj.childes.length == 0 ? (
-            <div
-              className={`singleLi bg-yellow-300 flex justify-center items-center px-4 `}
-              key={index}
-              style={{
-                width: `${
-                  obj.title.length < 12
-                    ? 6
-                    : obj.title.length >= 12 && obj.title.length < 16
-                    ? 8
-                    : obj.title.length - 8
-                }vw`,
-              }}
-            >
-              {obj.title}
-            </div>
+          return obj.childes.length < 1 ? (
+            <Link href={obj.link} key={index}>
+              <div
+                className={`singleLi bg-yellow-300 flex justify-center items-center px-4 h-100%`}
+                style={{
+                  width: `${
+                    obj.title.length < 12
+                      ? 6
+                      : obj.title.length >= 12 && obj.title.length < 16
+                      ? 8
+                      : obj.title.length - 8
+                  }vw`,
+                }}
+              >
+                {obj.title}
+              </div>
+            </Link>
           ) : (
             <div
-              className="singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative"
+              className="singleLi bg-yellow-300 w-fit px-4 flex justify-center items-center relative h-100%"
               style={{
                 width: `${
                   obj.title.length < 12
@@ -137,31 +139,34 @@ const Links = () => {
                 className={`ul_child_linksNav absolute z-10 bg-yellow-900 text-white  top-100% left-0 hidden `}
               >
                 {console.log("________________")}
-                {console.log(obj.childes[0].title.length)}
+                {console.log(obj.childes)}
                 {console.log("*****************")}
 
                 {obj.childes.map((chil, ind) => {
+                  console.log(chil.link);
                   return (
-                    <div
-                      className={`singleLi  text-white text-nowrap `}
-                      style={{
-                        width: `${
-                          obj.childes[0].title.length <= obj.title.length
-                            ? `${
-                                obj.title.length < 12
-                                  ? 6
-                                  : obj.title.length >= 12 &&
-                                    obj.title.length < 16
-                                  ? 8
-                                  : obj.title.length - 8
-                              }vw`
-                            : "fit-content"
-                        }`,
-                      }}
-                      key={ind}
-                    >
-                      {chil.title}
-                    </div>
+                    <Link href={`${chil.link}`}>
+                      <div
+                        className={`singleLi  text-white text-nowrap `}
+                        style={{
+                          width: `${
+                            obj.childes[0].title.length <= obj.title.length
+                              ? `${
+                                  obj.title.length < 12
+                                    ? 6
+                                    : obj.title.length >= 12 &&
+                                      obj.title.length < 16
+                                    ? 8
+                                    : obj.title.length - 8
+                                }vw`
+                              : "fit-content"
+                          }`,
+                        }}
+                        key={ind}
+                      >
+                        {chil.title}
+                      </div>
+                    </Link>
                   );
                 })}
               </ul>

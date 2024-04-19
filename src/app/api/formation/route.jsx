@@ -5,7 +5,8 @@ export const GET = async (req) => {
   try {
     if (req.method === "GET") {
       const formDoc = await query_pfe({
-        query: "SELECT Nom_du_Axe as title FROM `axe_recherche` ",
+        query:
+          "SELECT Nom_du_Axe as title , concat('/',id_Axe_Recherche) as link FROM `axe_recherche` ",
         values: [],
       });
 
