@@ -11,6 +11,9 @@ import { getLaboAndEquipes } from "../helperConnectFunctions/getLaboAndEquipes";
 // function get the formation table from the database :
 import { formationAxeRecherche } from "../layoutHF/Links";
 
+// import the Parent of childes layer :
+
+import ParentLayerOfChildes from "./AcceilChildesComponentsLoop/ParentLayerOfChildes";
 // import childes Components :
 import ChildLabo from "./AcceilChildesComponentsLoop/ChildLabo";
 import ChildEquipe from "./AcceilChildesComponentsLoop/ChildEquipe";
@@ -48,7 +51,7 @@ export default function Acceuil() {
 
       {/* first section of labo :  */}
 
-      <section className="laboDiv py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
+      {/* <section className="laboDiv py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
         <h1 className={`${Styles.theH2}  font-extrabold text-4xl `}>
           Le centre d' Etude doctorales de FPBM se compose de{" "}
           {arrayLabo.length > 0 ? arrayLabo.length : "loading ......"}{" "}
@@ -62,11 +65,21 @@ export default function Acceuil() {
         ) : (
           <div> is loading ..... </div>
         )}
-      </section>
+      </section> */}
+
+      <ParentLayerOfChildes theArray={arrayLabo}>
+        {arrayLabo.length > 0 ? (
+          arrayLabo.map((elem, index) => {
+            return <ChildLabo objectVal={elem} key={index} />;
+          })
+        ) : (
+          <div> is loading ..... </div>
+        )}
+      </ParentLayerOfChildes>
 
       {/* seconde section of equipes :  */}
 
-      <section className="equipeDev py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
+      {/* <section className="equipeDev py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
         <h1 className={`${Styles.theH2}  font-extrabold text-4xl `}>
           Le centre d' Etude doctorales de FPBM se compose de{" "}
           {arrayEquipes.length > 0 ? arrayEquipes.length : "loading ......"}{" "}
@@ -80,11 +93,21 @@ export default function Acceuil() {
         ) : (
           <div> is loading ..... </div>
         )}
-      </section>
+      </section> */}
+
+      <ParentLayerOfChildes theArray={arrayEquipes}>
+        {arrayEquipes.length > 0 ? (
+          arrayEquipes.map((elem, index) => {
+            return <ChildEquipe objectVal={elem} key={index} />;
+          })
+        ) : (
+          <div> is loading ..... </div>
+        )}
+      </ParentLayerOfChildes>
 
       {/* third section of Axe de recheche like in the header nav links  :  */}
 
-      <section className=" py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
+      {/* <section className=" py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
         <h1 className={`${Styles.theH2}  font-extrabold text-4xl `}>
           Le centre d' Etude doctorales de FPBM se compose de
           {arrayFormation.length > 0
@@ -100,7 +123,17 @@ export default function Acceuil() {
         ) : (
           <div> is loading ..... </div>
         )}
-      </section>
+      </section> */}
+
+      <ParentLayerOfChildes theArray={arrayFormation}>
+        {arrayFormation.length > 0 ? (
+          arrayFormation.map((elem, index) => {
+            return <ChildFormation title={elem.title} key={index} />;
+          })
+        ) : (
+          <div> is loading ..... </div>
+        )}
+      </ParentLayerOfChildes>
     </main>
   );
 }
