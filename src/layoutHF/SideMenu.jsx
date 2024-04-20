@@ -61,7 +61,7 @@ const SideMenu = ({ toggleVal, setToggle }) => {
           return obj.childes.length < 1 ? (
             <Link href={obj.link} key={index}>
               <div
-                className={`singleLi bg-yellow-300 pl-10 flex  items-center uppercase font-extrabold text-lg  w-70% ${
+                className={`singleLi bg-yellow-300 pl-10 flex  items-center uppercase font-extrabold text-lg w-90% md:w-70% ${
                   obj.link == path ? Styles.active : ""
                 }`}
                 style={{ height: "100px" }}
@@ -71,7 +71,7 @@ const SideMenu = ({ toggleVal, setToggle }) => {
             </Link>
           ) : (
             <div
-              className={`singleLi bg-yellow-300  flex flex-col  relative  w-70%    `}
+              className={`singleLi bg-yellow-300  flex flex-col  relative  w-90%    `}
               key={index}
             >
               <span
@@ -84,14 +84,14 @@ const SideMenu = ({ toggleVal, setToggle }) => {
               {/* get the width of the parent :  */}
 
               <ul
-                className={`ul_child_linksNav flex flex-col ml-10 bg-yellow-900 text-white space-y-2  `}
+                className={`ul_child_linksNav flex flex-col ml-14 bg-yellow-900 text-white space-y-2  `}
                 key={index}
               >
                 {obj.childes.map((chil, ind) => {
                   return (
                     <Link href={`${chil.link}`} key={ind}>
                       <div
-                        className={`  text-nowrap bg-white text-black uppercase font-bold text-md  flex items-center ${
+                        className={` bg-white text-black uppercase font-bold text-md  flex items-center ${
                           chil.link == path ? Styles.active : ""
                         }
                           `}

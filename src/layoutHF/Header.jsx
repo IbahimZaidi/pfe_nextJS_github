@@ -55,7 +55,9 @@ const Header = () => {
         }}
         className=" cursor-pointer"
       >
-        <IoMailOpenOutline className="w-8 h-8 lg:hidden" />
+        <button className="lg:hidden border border-white p-2 bg-blue-500  ">
+          Menu
+        </button>
       </span>
       {/* this is the menu sid_bare component */}
 
