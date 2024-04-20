@@ -41,6 +41,11 @@ export default function Acceuil() {
     });
   }, []);
 
+  // // get the value from the info from the store :
+  // const { laboTable } = useSelector((store) => store.labo);
+
+  // console.log("Hello this the table from the store : ", laboTable);
+
   return (
     <main className=" bg-green-300 pb-20 w-90vw flex flex-col space-y-20 items-start m-auto   ">
       <section className="headingH1 ml-10 mt-20 border-2 border-blue-800">
@@ -49,23 +54,13 @@ export default function Acceuil() {
         </h1>
       </section>
 
+      <section className="headingH1 ml-10 mt-20 border-2 border-blue-800">
+        <h1
+          className={`${Styles.theH1} relative font-extrabold text-4xl `}
+        ></h1>
+      </section>
+
       {/* first section of labo :  */}
-
-      {/* <section className="laboDiv py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
-        <h1 className={`${Styles.theH2}  font-extrabold text-4xl `}>
-          Le centre d' Etude doctorales de FPBM se compose de{" "}
-          {arrayLabo.length > 0 ? arrayLabo.length : "loading ......"}{" "}
-          laboratoires :
-        </h1>
-
-        {arrayLabo.length > 0 ? (
-          arrayLabo.map((elem, index) => {
-            return <ChildLabo objectVal={elem} key={index} />;
-          })
-        ) : (
-          <div> is loading ..... </div>
-        )}
-      </section> */}
 
       <ParentLayerOfChildes theArray={arrayLabo}>
         {arrayLabo.length > 0 ? (
@@ -79,22 +74,6 @@ export default function Acceuil() {
 
       {/* seconde section of equipes :  */}
 
-      {/* <section className="equipeDev py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
-        <h1 className={`${Styles.theH2}  font-extrabold text-4xl `}>
-          Le centre d' Etude doctorales de FPBM se compose de{" "}
-          {arrayEquipes.length > 0 ? arrayEquipes.length : "loading ......"}{" "}
-          Equipes :
-        </h1>
-
-        {arrayEquipes.length > 0 ? (
-          arrayEquipes.map((elem, index) => {
-            return <ChildEquipe objectVal={elem} key={index} />;
-          })
-        ) : (
-          <div> is loading ..... </div>
-        )}
-      </section> */}
-
       <ParentLayerOfChildes theArray={arrayEquipes}>
         {arrayEquipes.length > 0 ? (
           arrayEquipes.map((elem, index) => {
@@ -106,24 +85,6 @@ export default function Acceuil() {
       </ParentLayerOfChildes>
 
       {/* third section of Axe de recheche like in the header nav links  :  */}
-
-      {/* <section className=" py-20 border-2 border-red-600 h-90% w-90% m-auto flex flex-col space-y-4 pl-10 pr-2 ">
-        <h1 className={`${Styles.theH2}  font-extrabold text-4xl `}>
-          Le centre d' Etude doctorales de FPBM se compose de
-          {arrayFormation.length > 0
-            ? ` ${arrayFormation.length} `
-            : "loading ......"}
-          Formations :
-        </h1>
-
-        {arrayFormation.length > 0 ? (
-          arrayFormation.map((elem, index) => {
-            return <ChildFormation title={elem.title} key={index} />;
-          })
-        ) : (
-          <div> is loading ..... </div>
-        )}
-      </section> */}
 
       <ParentLayerOfChildes theArray={arrayFormation}>
         {arrayFormation.length > 0 ? (
