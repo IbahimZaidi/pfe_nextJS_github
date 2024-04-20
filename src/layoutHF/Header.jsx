@@ -24,7 +24,7 @@ export const cheakHeightTran = () => {
 };
 
 const Header = () => {
-  const [toggleVal, setToggle] = useState(true);
+  const [toggleVal, setToggle] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", cheakHeightTran);
@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <header
       id="header"
-      className="bg-green-500 fixed w-100vw flex justify-between items-center h-24  px-1 md:px-3 lg:px-6 xl:px-8 2xl:px-12  m-auto "
+      className="bg-green-500 fixed w-100vw flex z-10 justify-between items-center h-24  px-1 md:px-3 lg:px-6 xl:px-8 2xl:px-12  m-auto "
       style={{ transition: "padding 1s " }}
     >
       <img
