@@ -18,6 +18,13 @@ import ParentLayerOfChildes from "./AcceilChildesComponentsLoop/ParentLayerOfChi
 import ChildLabo from "./AcceilChildesComponentsLoop/ChildLabo";
 import ChildEquipe from "./AcceilChildesComponentsLoop/ChildEquipe";
 import ChildFormation from "./AcceilChildesComponentsLoop/ChildFormation";
+import { useDispatch, useSelector } from "react-redux";
+
+// import the function of update the data :
+
+import { getDataFromLabo } from "../lib/features/laboSlice/laboSlice";
+
+import { getDataFromEquipes } from "../lib/features/equipeSlice/equipeSlice";
 
 // start the main component Acceuil of the index page :
 
@@ -41,6 +48,23 @@ export default function Acceuil() {
     });
   }, []);
 
+  // get the arrayEquipes and arrayLabo using reduxTolkit :
+  const dispatchLabo = useDispatch();
+  const dispatchEqui = useDispatch();
+  const { theDataLabo } = useSelector((store) => store.labo);
+  const { theDataEqui } = useSelector((store) => store.equipes);
+
+  // const [dataEquipes, setDataEquipes] = useState();
+  // const [dataLab, setDataLib] = useState();
+
+  // refresh the data in equipes and labo :
+  useEffect(() => {
+    dispatchEqui(getDataFromEquipes());
+    dispatchLabo(getDataFromLabo());
+  }, []);
+
+  // print data to make sure :
+
   // // get the value from the info from the store :
   // const { laboTable } = useSelector((store) => store.labo);
 
@@ -62,9 +86,9 @@ export default function Acceuil() {
 
       {/* first section of labo :  */}
 
-      <ParentLayerOfChildes theArray={arrayLabo}>
-        {arrayLabo.length > 0 ? (
-          arrayLabo.map((elem, index) => {
+      <ParentLayerOfChildes theArray={theDataLabo} nameVal={"Laboratoires "}>
+        {theDataLabo.length > 0 ? (
+          theDataLabo.map((elem, index) => {
             return <ChildLabo objectVal={elem} key={index} />;
           })
         ) : (
@@ -74,9 +98,9 @@ export default function Acceuil() {
 
       {/* seconde section of equipes :  */}
 
-      <ParentLayerOfChildes theArray={arrayEquipes}>
-        {arrayEquipes.length > 0 ? (
-          arrayEquipes.map((elem, index) => {
+      <ParentLayerOfChildes theArray={theDataEqui} nameVal={"Equipes"}>
+        {theDataEqui.length > 0 ? (
+          theDataEqui.map((elem, index) => {
             return <ChildEquipe objectVal={elem} key={index} />;
           })
         ) : (
@@ -86,7 +110,7 @@ export default function Acceuil() {
 
       {/* third section of Axe de recheche like in the header nav links  :  */}
 
-      <ParentLayerOfChildes theArray={arrayFormation}>
+      <ParentLayerOfChildes theArray={arrayFormation} nameVal={"Formations"}>
         {arrayFormation.length > 0 ? (
           arrayFormation.map((elem, index) => {
             return <ChildFormation title={elem.title} key={index} />;

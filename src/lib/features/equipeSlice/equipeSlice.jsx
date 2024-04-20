@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // function read the table :
 export const getDataFromEquipes = createAsyncThunk(
-  "labo/laboData",
+  "equipes/laboData",
   async () => {
     const response = await fetch("http://localhost:3000/api/laboAndEqui");
     const result = await response.json();
@@ -13,7 +13,7 @@ export const getDataFromEquipes = createAsyncThunk(
 
 const initialState = {
   testTable: [100, 200, 300],
-  theData: [],
+  theDataEqui: [],
   isLoading: false,
 };
 
@@ -34,7 +34,7 @@ const equipesSlice = createSlice({
       })
       .addCase(getDataFromEquipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.theData = action.payload;
+        state.theDataEqui = action.payload;
         console.log("@@@@@@@@@@@@@@@@@@@@@@ succeffully : ", action.payload);
       })
       .addCase(getDataFromEquipes.rejected, (state) => {

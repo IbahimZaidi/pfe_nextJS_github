@@ -10,7 +10,7 @@ export const getDataFromLabo = createAsyncThunk("labo/laboData", async () => {
 
 const initialState = {
   testTable: [100, 200, 300],
-  theData: [],
+  theDataLabo: [],
   isLoading: false,
 };
 
@@ -31,7 +31,7 @@ const laboSlice = createSlice({
       })
       .addCase(getDataFromLabo.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.theData = action.payload;
+        state.theDataLabo = action.payload;
         console.log("@@@@@@@@@@@@@@@@@@@@@@ succeffully : ", action.payload);
       })
       .addCase(getDataFromLabo.rejected, (state) => {
