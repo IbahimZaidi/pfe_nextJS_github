@@ -1,3 +1,7 @@
 .active {
   @apply bg-red-500 text-white border box-border border-white;
 }
+
+.scrollClass {
+  @apply px-3 md:px-6 lg:px-10 xl:px-16 2xl:px-20;
+}

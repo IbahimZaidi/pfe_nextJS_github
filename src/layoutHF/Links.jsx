@@ -62,6 +62,8 @@ const Links = () => {
     setArrayLi(arrayL);
   }, []);
 
+  // cheak the height and make transition and change of width and hieght of images and the links :
+
   // function handle the hover :
 
   const onLeaveMouseLi = (e) => {
@@ -84,7 +86,11 @@ const Links = () => {
 
   // arrayLinks().then((resolve) => console.log(resolve));
   return (
-    <nav className=" border-2 border-red-950 w-80vw  hidden lg:flex h-100%  justify-between ">
+    <nav
+      id="theNavUl"
+      className=" border-2 border-red-950 w-80% hidden lg:flex h-100%  justify-between "
+      style={{ transition: "width 1s" }}
+    >
       {arrayLi.length > 0 ? (
         arrayLi.map((obj, index) => {
           return obj.childes.length < 1 ? (

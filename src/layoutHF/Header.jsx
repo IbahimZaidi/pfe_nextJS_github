@@ -3,13 +3,39 @@ import React from "react";
 import Links from "./Links";
 import { IoMailOpenOutline } from "react-icons/io5";
 import SideMenu from "./SideMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import Styles from "./links.module.css";
+
+// cheak the height and make transition and change of width and hieght of images and the links :
+
+export const cheakHeightTran = () => {
+  const scrollHeight = window.scrollY;
+
+  if (scrollHeight > 40) {
+    document.getElementById("header").classList.add(`${Styles.scrollClass}`);
+    console.log(scrollHeight);
+  }
+
+  if (scrollHeight <= 40) {
+    document.getElementById("header").classList.remove(`${Styles.scrollClass}`);
+    console.log(scrollHeight);
+  }
+};
 
 const Header = () => {
   const [toggleVal, setToggle] = useState(true);
 
+  useEffect(() => {
+    window.addEventListener("scroll", cheakHeightTran);
+  }, []);
+
   return (
-    <header className="bg-green-500 flex justify-between items-center h-24  px-1 md:px-3 lg:px-6 xl:px-8 2xl:px-12  m-auto ">
+    <header
+      id="header"
+      className="bg-green-500 fixed w-100vw flex justify-between items-center h-24  px-1 md:px-3 lg:px-6 xl:px-8 2xl:px-12  m-auto "
+      style={{ transition: "padding 1s " }}
+    >
       <img
         className=" w-14 md:w-16 lg:w-18  xl:w-20 h-14 md:h-16 lg:h-18  xl:h-20 hidden lg:block"
         src="/images&figures/fplogo.png"
