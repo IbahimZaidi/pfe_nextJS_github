@@ -1,0 +1,14 @@
+.theH1::after {
+  content: "";
+  border-bottom: 6px solid yellow;
+  width: 100px;
+  height: 1px;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+}
+.theH1,
+.theH2 {
+  font-family: century Gothic;
+  text-transform: capitalize;
+}
