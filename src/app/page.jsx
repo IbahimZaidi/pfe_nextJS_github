@@ -13,11 +13,11 @@ import { formationAxeRecherche } from "../layoutHF/Links";
 
 // import the Parent of childes layer :
 
-import ParentLayerOfChildes from "./AcceilChildesComponentsLoop/ParentLayerOfChildes";
+import ParentLayerOfChildes from "../AcceilChildesComponentsLoop/ParentLayerOfChildes";
 // import childes Components :
-import ChildLabo from "./AcceilChildesComponentsLoop/ChildLabo";
-import ChildEquipe from "./AcceilChildesComponentsLoop/ChildEquipe";
-import ChildFormation from "./AcceilChildesComponentsLoop/ChildFormation";
+import ChildLabo from "../AcceilChildesComponentsLoop/ChildLabo";
+import ChildEquipe from "../AcceilChildesComponentsLoop/ChildEquipe";
+import ChildFormation from "../AcceilChildesComponentsLoop/ChildFormation";
 import { useDispatch, useSelector } from "react-redux";
 
 // import the function of update the data :
@@ -76,12 +76,6 @@ export default function Acceuil() {
         <h1 className={`${Styles.theH1} relative font-extrabold text-4xl `}>
           Centre d' Etude Doctorales{" "}
         </h1>
-      </section>
-
-      <section className="headingH1 ml-10 mt-20 border-2 border-blue-800">
-        <h1
-          className={`${Styles.theH1} relative font-extrabold text-4xl `}
-        ></h1>
       </section>
 
       {/* first section of labo :  */}

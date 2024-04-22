@@ -8,9 +8,9 @@ import { arrayLinks } from "./Links";
 const SideMenu = ({ toggleVal, setToggle }) => {
   // declaret and insert the array Links :
   const [arrayLi, setArrayLi] = useState([]);
-  console.log("##############################");
-  arrayLinks().then((resolve) => console.log(resolve));
-  console.log("##############################");
+  // console.log("##############################");
+  // arrayLinks().then((resolve) => console.log(resolve));
+  // console.log("##############################");
 
   useEffect(async () => {
     const arrayL = await arrayLinks().then((resolve) => resolve);
@@ -50,7 +50,7 @@ const SideMenu = ({ toggleVal, setToggle }) => {
         className="absolute right-0 top-0 w-12 h-12 rounded-full bg-yellow-300"
         onClick={() => {
           setToggle(!toggleVal);
-          console.log("hello", toggleVal);
+          // console.log("hello", toggleVal);
         }}
       >
         {" "}

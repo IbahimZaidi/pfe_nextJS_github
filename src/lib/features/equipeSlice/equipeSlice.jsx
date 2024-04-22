@@ -30,16 +30,16 @@ const equipesSlice = createSlice({
     builder
       .addCase(getDataFromEquipes.pending, (state) => {
         state.isLoading = true;
-        console.log("@@@@@@@@@@@@@@@@@@@@@@ pending : ");
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@ pending : ");
       })
       .addCase(getDataFromEquipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.theDataEqui = action.payload;
-        console.log("@@@@@@@@@@@@@@@@@@@@@@ succeffully : ", action.payload);
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@ succeffully : ", action.payload);
       })
       .addCase(getDataFromEquipes.rejected, (state) => {
         state.isLoading = false;
-        console.log("@@@@@@@@@@@@@@@@@@@@@@ Error : ");
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@ Error : ");
       });
   },
 });

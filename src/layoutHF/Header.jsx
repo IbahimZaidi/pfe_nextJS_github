@@ -14,12 +14,12 @@ export const cheakHeightTran = () => {
 
   if (scrollHeight > 40) {
     document.getElementById("header").classList.add(`${Styles.scrollClass}`);
-    console.log(scrollHeight);
+    // console.log(scrollHeight);
   }
 
   if (scrollHeight <= 40) {
     document.getElementById("header").classList.remove(`${Styles.scrollClass}`);
-    console.log(scrollHeight);
+    // console.log(scrollHeight);
   }
 };
 
@@ -51,7 +51,7 @@ const Header = () => {
       <span
         onClick={() => {
           setToggle(!toggleVal);
-          console.log("hello", toggleVal);
+          // console.log("hello", toggleVal);
         }}
         className=" cursor-pointer"
       >

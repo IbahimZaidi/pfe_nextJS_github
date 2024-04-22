@@ -27,16 +27,16 @@ const laboSlice = createSlice({
     builder
       .addCase(getDataFromLabo.pending, (state) => {
         state.isLoading = true;
-        console.log("@@@@@@@@@@@@@@@@@@@@@@ pending : ");
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@ pending : ");
       })
       .addCase(getDataFromLabo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.theDataLabo = action.payload;
-        console.log("@@@@@@@@@@@@@@@@@@@@@@ succeffully : ", action.payload);
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@ succeffully : ", action.payload);
       })
       .addCase(getDataFromLabo.rejected, (state) => {
         state.isLoading = false;
-        console.log("@@@@@@@@@@@@@@@@@@@@@@ Error : ");
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@ Error : ");
       });
   },
 });
