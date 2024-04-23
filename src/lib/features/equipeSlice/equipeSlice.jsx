@@ -11,9 +11,23 @@ export const getDataFromEquipes = createAsyncThunk(
   }
 );
 
+export const getDataFromIdEquipes = createAsyncThunk(
+  "/equipes/idData",
+  async (id) => {
+    const response = await fetch(
+      `http://localhost:3000/api/laboAndEqui/equipe/${id}`
+    );
+
+    const result = await response.json();
+
+    return result.equipeElem;
+  }
+);
+
 const initialState = {
   testTable: [100, 200, 300],
   theDataEqui: [],
+  theDataEquiId: [],
   isLoading: false,
 };
 
@@ -41,6 +55,11 @@ const equipesSlice = createSlice({
         state.isLoading = false;
         // console.log("@@@@@@@@@@@@@@@@@@@@@@ Error : ");
       });
+
+    builder.addCase(getDataFromIdEquipes.fulfilled, (state, action) => {
+      state.theDataEquiId = action.payload;
+      console.log("############# ", state.theDataEquiId);
+    });
   },
 });
 

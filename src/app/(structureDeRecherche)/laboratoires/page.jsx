@@ -6,8 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataFromLabo } from "@/src/lib/features/laboSlice/laboSlice";
 import { useEffect } from "react";
 import LaboChileSR from "@/src/SRChildreen/LaboChileSR";
+import { getIdLabo } from "@/src/helperConnectFunctions/getIdLabo";
 
-export default function StructureRechLabo() {
+import { useState } from "react";
+
+const StructureRechLabo = ({ params }) => {
   const { theDataLabo } = useSelector((store) => store.labo);
 
   // call the dispatch function  :
@@ -31,11 +34,13 @@ export default function StructureRechLabo() {
         </h1>
 
         <div className="container_childreen grid grid-cols-2 gap-x-3 gap-y-3 p-20">
-          {theDataLabo.map((elem) => {
-            return <LaboChileSR objectVal={elem} />;
+          {theDataLabo.map((elem, index) => {
+            return <LaboChileSR objectVal={elem} key={index} />;
           })}
         </div>
       </section>
     </main>
   );
-}
+};
+
+export default StructureRechLabo;

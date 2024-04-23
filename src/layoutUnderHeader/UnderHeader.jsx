@@ -10,7 +10,6 @@ import { getDataFromEquipes } from "../lib/features/equipeSlice/equipeSlice";
 import { getDataFromLabo } from "../lib/features/laboSlice/laboSlice";
 
 import { arrayLinks } from "../layoutHF/Links";
-import { resolve } from "styled-jsx/css";
 const UnderHeader = () => {
   const [arrayH1, setArrayH1] = useState([]);
 
@@ -42,59 +41,97 @@ const UnderHeader = () => {
 
       // push other elements of the laboratoires and equipes Names base on the path value :
 
-      console.log("this is the final newArray before the setArrayH1", newArray);
+      console.log("SSSSSSSSSSSSS", newArray);
 
       // add the final array
-      setArrayH1(newArray);
+      // setArrayH1([...arrayH1, ...newArray]);
+      setArrayH1((prevArrayH1) => [...prevArrayH1, ...newArray]);
     });
   }, []);
 
   // push the data from the labo and equipes tables and make the array of the dependecies of the states with the dataEquipe and the dataLabo :
 
+  // declare cheak :
+
+  const [cheakEquipe, setCheakEquipe] = useState(false);
+  const [cheakLabo, setCheakLabo] = useState(false);
+
   // the data of the labo :
   useEffect(() => {
-    const newArrayHay = [];
+    if (!cheakLabo) {
+      console.log("YYYYYYYYYYYYYYYYYYYYYYY cheak Labo ", cheakLabo);
+      const newArrayHay = [];
 
-    // push  the data of the labo  table this time :
+      // push  the data of the labo  table this time :
 
-    theDataLabo.map((elem) => {
-      // push all data from the labo inside the newArray
+      theDataLabo.map((elem) => {
+        // push all data from the labo inside the newArray
 
-      newArrayHay.push({
-        id: `/laboratoires/${elem.id_labo}`,
-        name: elem.Acronyme,
-        desc: elem.Intitulé,
+        // cheak first if aleady exist :
+
+        newArrayHay.push({
+          id: `/laboratoires/${elem.id_labo}`,
+          name: elem.Acronyme,
+          desc: elem.Intitulé,
+        });
       });
-    });
 
-    // this cheak length > 0 for cheaking the data loaded in the newArrayHay or not :
-    newArrayHay.length > 0 ? setArrayH1([...arrayH1, ...newArrayHay]) : "";
+      // change the cheak to true :
+      newArrayHay.length > 0 ? setCheakLabo(true) : "";
+
+      // this cheak length > 0 for cheaking the data loaded in the newArrayHay or not :
+      newArrayHay.length > 0
+        ? setArrayH1((prevArrayH1) => [...prevArrayH1, ...newArrayHay])
+        : "";
+    }
   }, [theDataLabo]);
 
   // use Effect of the Equipes :
 
   useEffect(() => {
-    const newArrayHay = [];
-    // push first the data of the equipes table :
-    theDataEqui.map((elem) => {
-      // push all data from the equipe inside the newArray
+    console.log(
+      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! cheak Equipe : ",
+      cheakEquipe
+    );
+    if (!cheakEquipe) {
+      const newArrayHay = [];
+      // push first the data of the equipes table :
+      theDataEqui.map((elem) => {
+        // push all data from the equipe inside the newArray
 
-      newArrayHay.push({
-        id: `/equipes/${elem.id_Equipe}`,
-        name: elem.Acronyme,
-        desc: elem.Intitulé,
+        newArrayHay.push({
+          id: `/equipes/${elem.id_Equipe}`,
+          name: elem.Acronyme,
+          desc: elem.Intitulé,
+        });
       });
-    });
+      // change the cheak to true :
+      newArrayHay.length > 0 ? setCheakEquipe(true) : "";
+      console.log(
+        "YYYYYYYYYYYYYYYYYYYYYYY cheak Equipe  ",
+        cheakEquipe,
+        newArrayHay
+      );
 
-    // this cheak length > 0 for cheaking the data loaded in the newArrayHay or not :
-    newArrayHay.length > 0 ? setArrayH1([...arrayH1, ...newArrayHay]) : "";
+      // this cheak length > 0 for cheaking the data loaded in the newArrayHay or not :
+      newArrayHay.length > 0
+        ? setArrayH1((prevArrayH1) => [...prevArrayH1, ...newArrayHay])
+        : "";
+    }
   }, [theDataEqui]);
 
   // this is for the console log info :
 
   useEffect(() => {
-    console.log("this is the the arrayH1############## : ", arrayH1);
-  }, [arrayH1]);
+    console.log(
+      "this is the the arrayH1############## : ",
+      arrayH1,
+      "cheak Equipe ",
+      cheakEquipe,
+      "cheak labo ",
+      cheakLabo
+    );
+  }, [arrayH1, theDataEqui, theDataLabo]);
   // useEffect(() => {
   //   console.log("this is the final newArray before the setArrayH1");
   // }, [arrayH1]);
@@ -150,7 +187,11 @@ const UnderHeader = () => {
           {!titleH1 ? "loading ...... " : titleH1}
         </h1>
 
-        {objectArray?.desc ? <p>{objectArray.desc} </p> : <p> CEDoc "Fpbm" </p>}
+        {objectArray?.desc ? (
+          <p className=" text-blue-400">{objectArray.desc} </p>
+        ) : (
+          <p> CEDoc "Fpbm" </p>
+        )}
       </div>
     </div>
   );
