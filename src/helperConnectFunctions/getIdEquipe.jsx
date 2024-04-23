@@ -7,5 +7,5 @@ export const getIdEquipe = async (id_eq) => {
 
   const result = await response.json();
 
-  return result.equipeElem;
+  return result;
 };

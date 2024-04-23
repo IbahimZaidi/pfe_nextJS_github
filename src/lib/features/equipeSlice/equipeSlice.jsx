@@ -20,7 +20,7 @@ export const getDataFromIdEquipes = createAsyncThunk(
 
     const result = await response.json();
 
-    return result.equipeElem;
+    return result;
   }
 );
 

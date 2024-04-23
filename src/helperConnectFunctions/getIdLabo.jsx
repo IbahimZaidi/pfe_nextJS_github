@@ -7,5 +7,5 @@ export const getIdLabo = async (id_lab) => {
 
   const result = await response.json();
 
-  return result.laboElem;
+  return result;
 };
