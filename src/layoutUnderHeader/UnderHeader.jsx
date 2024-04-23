@@ -50,17 +50,10 @@ const UnderHeader = () => {
   }, []);
 
   // push the data from the labo and equipes tables and make the array of the dependecies of the states with the dataEquipe and the dataLabo :
+
+  // the data of the labo :
   useEffect(() => {
     const newArrayHay = [];
-    // push first the data of the equipes table :
-    theDataEqui.map((elem) => {
-      // push all data from the equipe inside the newArray
-
-      newArrayHay.push({
-        id: `/equipes/${elem.id_Equipe}`,
-        name: elem.Intitulé,
-      });
-    });
 
     // push  the data of the labo  table this time :
 
@@ -69,15 +62,38 @@ const UnderHeader = () => {
 
       newArrayHay.push({
         id: `/laboratoires/${elem.id_labo}`,
-        name: elem.Intitulé,
+        name: elem.Acronyme,
+        desc: elem.Intitulé,
       });
     });
 
+    // this cheak length > 0 for cheaking the data loaded in the newArrayHay or not :
     newArrayHay.length > 0 ? setArrayH1([...arrayH1, ...newArrayHay]) : "";
-  }, [theDataEqui, theDataLabo]);
+  }, [theDataLabo]);
+
+  // use Effect of the Equipes :
 
   useEffect(() => {
-    console.log("this is the the arrayH1 : ", arrayH1);
+    const newArrayHay = [];
+    // push first the data of the equipes table :
+    theDataEqui.map((elem) => {
+      // push all data from the equipe inside the newArray
+
+      newArrayHay.push({
+        id: `/equipes/${elem.id_Equipe}`,
+        name: elem.Acronyme,
+        desc: elem.Intitulé,
+      });
+    });
+
+    // this cheak length > 0 for cheaking the data loaded in the newArrayHay or not :
+    newArrayHay.length > 0 ? setArrayH1([...arrayH1, ...newArrayHay]) : "";
+  }, [theDataEqui]);
+
+  // this is for the console log info :
+
+  useEffect(() => {
+    console.log("this is the the arrayH1############## : ", arrayH1);
   }, [arrayH1]);
   // useEffect(() => {
   //   console.log("this is the final newArray before the setArrayH1");
@@ -86,16 +102,30 @@ const UnderHeader = () => {
   // the variable contain the pathName :
   //   const [pathName, setThePathName] = useState("");
 
+  // declare the object contains object value :
+  const [objectArray, setOjbectArray] = useState({});
+
   // this the state contain the name of the H1
   const [titleH1, setTitleH1] = useState("");
 
   const path = usePathname();
 
   useEffect(() => {
-    const objectArray = arrayH1.find((elm) => elm.id === path);
-    setTitleH1(objectArray?.name);
+    setOjbectArray(arrayH1.find((elm) => elm.id === path));
   }, [path, arrayH1]); // control the re-rendering
 
+  // the titleH1 is changing base on the change of the objectArray :
+
+  useEffect(() => {
+    setTitleH1(objectArray?.name);
+  }, [objectArray]);
+  // cheak the value of the object :
+  useEffect(() => {
+    console.log("________________________");
+    console.log(objectArray);
+    console.log(titleH1);
+    console.log("________________________");
+  }, [objectArray, titleH1]);
   // cheak first the params() is empty or not :
 
   console.log(
@@ -119,7 +149,8 @@ const UnderHeader = () => {
           {" "}
           {!titleH1 ? "loading ...... " : titleH1}
         </h1>
-        <p className="font-bold text-xl "> CEDoc "Fpbm" </p>
+
+        {objectArray?.desc ? <p>{objectArray.desc} </p> : <p> CEDoc "Fpbm" </p>}
       </div>
     </div>
   );
