@@ -10,7 +10,7 @@ import { useEffect } from "react";
 export default function soutenaceHabiliter({ params }) {
   const { theDataIdHa } = useSelector((store) => store.souHa);
 
-  // call the dispatch function  for the soutencance These :
+  // call the dispatch function  for the soutencance Thes e :
   const dispatchSoutHabId = useDispatch();
 
   // refres
