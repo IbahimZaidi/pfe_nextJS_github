@@ -8,7 +8,7 @@ export const GET = async (req, { params }) => {
     if (req.method === "GET") {
       const infoHaReponse = await query_pfe({
         query:
-          "SELECT prof.NomPrenom, soutenance_habiliter.id_sout_abi, MONTHNAME(soutenance_habiliter.Date_de_soutenacne_habiliter) AS month, DAY(soutenance_habiliter.Date_de_soutenacne_habiliter) AS day, YEAR(soutenance_habiliter.Date_de_soutenacne_habiliter) AS year, HOUR(soutenance_habiliter.Date_de_soutenacne_habiliter) AS hour, MINUTE(soutenance_habiliter.Date_de_soutenacne_habiliter) AS minute, soutenance_habiliter.Intitulé_du_travail FROM soutenance_habiliter INNER JOIN prof ON soutenance_habiliter.id_Auteur = prof.id_prof WHERE soutenance_habiliter.id_sout_abi =  ?  ",
+          "SELECT prof.NomPrenom, soutenance_habiliter.id_sout_abi, MONTHNAME(soutenance_habiliter.Date_de_soutenacne_habiliter) AS month, DAY(soutenance_habiliter.Date_de_soutenacne_habiliter) AS day, YEAR(soutenance_habiliter.Date_de_soutenacne_habiliter) AS year, HOUR(soutenance_habiliter.Date_de_soutenacne_habiliter) AS hour, MINUTE(soutenance_habiliter.Date_de_soutenacne_habiliter) AS minute, soutenance_habiliter.Intitulé_du_travail as Intitulé_du_travail FROM soutenance_habiliter INNER JOIN prof ON soutenance_habiliter.id_Auteur = prof.id_prof WHERE soutenance_habiliter.id_sout_abi =  ?  ",
         values: [params.id],
       });
 

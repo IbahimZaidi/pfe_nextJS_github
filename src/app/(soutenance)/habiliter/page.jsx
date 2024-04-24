@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDataFromSoutenanceHab } from "@/src/lib/features/soutenace_Habili_slice/habiliSlice";
 import { useEffect } from "react";
 
+import ChildSoutHabilite from "@/src/SoutenacneChildrenes/ChildSoutHabiliter";
+
 export default function soutenaceHabiliter() {
   const { theDataGlobalHa } = useSelector((store) => store.souHa);
 
@@ -25,8 +27,10 @@ export default function soutenaceHabiliter() {
     );
   }, [theDataGlobalHa]);
   return (
-    <div className=" bg-green-300 h-100vh w-90vw flex justify-center items-center m-auto ">
-      Hello from soutenace Habiliter
+    <div className=" bg-green-300 h-100vh w-90vw grid grid-cols-3 gap-x-10 px-4  justify-center items-center m-auto  border-2 border-black ">
+      {theDataGlobalHa.map((elem, index) => {
+        return <ChildSoutHabilite objectVal={elem} key={index} />;
+      })}
     </div>
   );
 }

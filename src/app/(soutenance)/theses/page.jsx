@@ -4,6 +4,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getDataFromSoutenance } from "@/src/lib/features/soutenance_these/theseSlice";
 import { useEffect, useState } from "react";
+import ChildSoutThe from "@/src/SoutenacneChildrenes/ChildSoutThe";
 export default function soutenaceThese() {
   const { theDataGlobal } = useSelector((store) => store.souThe);
 
@@ -21,8 +22,10 @@ export default function soutenaceThese() {
   );
 
   return (
-    <div className=" bg-green-300 h-100vh w-90vw flex justify-center items-center m-auto ">
-      Hello from soutenace theses
+    <div className=" bg-green-300 h-100vh w-90vw grid grid-cols-3 gap-x-10 px-4  justify-center items-center m-auto  border-2 border-black ">
+      {theDataGlobal.map((elem, index) => {
+        return <ChildSoutThe objectVal={elem} key={index} />;
+      })}
     </div>
   );
 }
