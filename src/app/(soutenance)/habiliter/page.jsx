@@ -27,7 +27,7 @@ export default function soutenaceHabiliter() {
     );
   }, [theDataGlobalHa]);
   return (
-    <div className=" bg-green-300 h-100vh w-90vw grid grid-cols-3 gap-x-10 px-4  justify-center items-center m-auto  border-2 border-black ">
+    <div className=" bg-green-300  w-90vw grid grid-cols-3 gap-x-10 px-4  justify-center items-center m-auto  border-2 border-black ">
       {theDataGlobalHa.map((elem, index) => {
         return <ChildSoutHabilite objectVal={elem} key={index} />;
       })}
