@@ -24,12 +24,12 @@ export default function ChildFormationAxe({ params }) {
     dispatchFI(getDataFromFormationId(params.id_fd));
   }, []);
 
-  // console.log(
-  //   "this is the data from the formation Id : ",
-  //   params.id_fd,
-  //   "=> : ",
-  //   theDataFormId
-  // );
+  console.log(
+    "this is the data from the formation Id : ",
+    params.id_fd,
+    "=> : ",
+    theDataFormId
+  );
   // you need to devise the result on arrays , each array have only lab_id , then loop over each laboratoire :
 
   // steps :
@@ -187,11 +187,30 @@ export default function ChildFormationAxe({ params }) {
   // b/ final stage of loop over result of sujet_proposer base on id_labo inside the array :
 
   return (
-    <div className=" bg-blue-500 h-100vh w-90vw flex  flex-col justify-center items-center m-auto ">
+    <div className=" bg-blue-500 w-90vw flex  flex-col justify-center items-center m-auto ">
       {/* Hello from the id : {params.id_fd} */}
       {filterData.length > 0 ? (
-        filterData.map((elem, index) => {
-          return <div>hello from the labo info : {elem.id_labo}</div>;
+        filterData.map((elem, ind) => {
+          return (
+            <div
+              className=" flex flex-col space-y-10 border-4 border-red-700 m-5  bg-yellow-500"
+              key={ind}
+            >
+              <span className="bg-green-400 border border-blue-700 p-10">
+                {elem.Acronyme}
+              </span>
+              {theDataFormId.map((element, index) => {
+                if (element.id_labo == elem.id_labo) {
+                  return (
+                    <div className="border-2 m-4  border-black" key={index}>
+                      {" "}
+                      {element.Intitulé_sujet}{" "}
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          );
         })
       ) : (
         <div className=" block"> is Loading ......... </div>
