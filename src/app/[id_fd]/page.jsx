@@ -193,18 +193,28 @@ export default function ChildFormationAxe({ params }) {
         filterData.map((elem, ind) => {
           return (
             <div
-              className=" flex flex-col space-y-10 border-4 border-red-700 m-5  bg-yellow-500"
+              className=" flex flex-col space-y-10 border-4 border-red-700 m-5 w-80%  bg-yellow-500"
               key={ind}
             >
               <span className="bg-green-400 border border-blue-700 p-10">
-                {elem.Acronyme}
+                Suject propose by :{" "}
+                <span className=" text-white"> {elem.Acronyme}</span>
               </span>
               {theDataFormId.map((element, index) => {
                 if (element.id_labo == elem.id_labo) {
                   return (
-                    <div className="border-2 m-4  border-black" key={index}>
+                    <div
+                      className="border-2 flex flex-col space-y-3 m-4  border-black"
+                      key={index}
+                    >
                       {" "}
-                      {element.Intitulé_sujet}{" "}
+                      <span className="bg-blue-400 h-16">
+                        {element.directeure_du_these}
+                        {" : "}
+                      </span>
+                      <span className="bg-red-400 h-20">
+                        {element.Intitulé_sujet}{" "}
+                      </span>
                     </div>
                   );
                 }
