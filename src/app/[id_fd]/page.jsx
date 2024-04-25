@@ -187,7 +187,7 @@ export default function ChildFormationAxe({ params }) {
   // b/ final stage of loop over result of sujet_proposer base on id_labo inside the array :
 
   return (
-    <div className=" bg-blue-500 w-90vw flex  flex-col justify-center items-center m-auto ">
+    <div className=" bg-blue-500 w-90vw flex min-h-90vh  flex-col justify-center items-center m-auto ">
       {/* Hello from the id : {params.id_fd} */}
       {filterData.length > 0 ? (
         filterData.map((elem, ind) => {
@@ -223,7 +223,7 @@ export default function ChildFormationAxe({ params }) {
           );
         })
       ) : (
-        <div className=" block"> is Loading ......... </div>
+        <div className=" block text-3xl "> is Loading ......... </div>
       )}
     </div>
   );
